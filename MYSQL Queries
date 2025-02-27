@@ -1,0 +1,120 @@
+create table
+create table walmart_data(
+user_id int,
+product_id varchar(20),
+gender char(1),
+age varchar(10),
+occupation int,
+city_category char(1),
+stay_in_current_city_years
+varchar(5),
+martial_status int,
+product_category int,
+purchase int
+);
+
+insert data
+INSERT INTO walmart_data VALUES
+(1000001, 'P00069042','F', '0-17', 10, 'A', '2', 0, 3, 8370);
+
+select first 5 record
+SELECT * FROM walmart_data
+LIMIT 5;
+
+count total records
+SELECT COUNT(*) AS total_records FROM walmart_data;
+
+average purchase by gender
+SELECT Gender, AVG(Purchase) AS
+avg_purchase
+FROM walmart_data
+GROUP BY Gender;
+
+retrive all records
+SELECT*FROM walmart_data;
+
+select specific columns
+SELECT User_ID, Product_ID, Purchase FROM walmart_data;
+
+count total record
+SELECT COUNT(*) AS total_records FROM walmart_data;
+
+get unique age groups
+SELECT DISTINCT Age FROM walmart_data
+
+SELECT* from  walmart_data 
+where Age='18-25';
+
+SELECT SUM(Purchase) AS
+total_purchase FROM walmart_data;
+
+SELECT SUM(Purchase) AS total_purchase FROM walmart_data;
+SELECT Gender, AVG(Purchase) AS
+avg_purchase
+FROM walmart_data
+GROUP BY Gender;
+
+SELECT City_Category, SUM(Purchase)
+AS total_spent
+FROM walmart_data
+GROUP BY City_Category;
+
+SELECT Marital_Status,
+COUNT (User_ID) AS total_users FROM walmart_data
+GROUP BY Marital_Status;
+
+SELECT * FROM walmart_data WHERE Purchase > 15000;
+SELECT*FROM walmart_data WHERE Stay_In_Current_City_Years = '4+';
+
+SELECT * FROM walmart_data WHERE Gender= 'F' AND Purchase > 10000;
+
+SELECT * FROM walmart_data WHERE City_Category = 'A' AND Marital_Status = 1;
+
+SELECT * FROM walmart_data
+ORDER BY Purchase DESC
+LIMIT 10;
+
+
+SELECT Occupation, SUM(Purchase) AS
+total_spent
+FROM walmart_data
+GROUP BY Occupation
+ORDER BY total_spent DESC
+LIMIT 5;
+
+SELECT* FROM walmart_data
+ORDER BY Purchase ASC
+LIMIT 5;
+
+SELECT Gender, SUM(Purchase) AS
+total_spent
+FROM walmart_data
+GROUP BY Gender
+ORDER BY total_spent DESC
+LIMIT 1;
+
+SELECT Age, City_Category, AVG(Purchase) AS avg_purchase FROM walmart_data GROUP BY Age, City_Category ORDER BY avg_purchase DESC;
+
+SELECT User_ID, COUNT(*) AS purchase_count
+FROM walmart_data
+GROUP BY User_ID
+HAVING purchase_count > 5;
+
+SELECT Age, SUM(Purchase) AS
+total_spent
+FROM walmart_data
+GROUP BY Age
+ORDER BY total_spent DESC;
+
+SELECT User_ID, SUM(Purchase) AS
+total_spent
+FROM walmart_data
+GROUP BY User_ID
+ORDER BY total_spent DESC
+LIMIT 1;
+
+SELECT User_ID, SUM(Purchase) AS total_spent, RANK() OVER (ORDER BY SUM(Purchase) DESC) AS "rank" FROM walmart_data GROUP BY User_ID;
+
+SELECT City_Category, User_ID, Purchase, RANK() OVER (PARTITION BY City_Category ORDER BY Purchase DESC) AS rank FROM walmart_data;
+
+
